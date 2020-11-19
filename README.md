@@ -8,7 +8,7 @@ https://github.com/joshuaebmcguire1/Powershell-Purge-Tool/blob/main/RunAutoRemov
  
  Sender of the email to be purged = X (This allows us to narrow down the search from a specific sender)
  
- Your SMTP address = S (This will be used to send you a notification email of commencement and completion of the purge.)
+ Your SMTP server address = S (This will be used to send you a notification email of commencement and completion of the purge.)
  
  Subject of email to be removed = U (This allows us to narrow down the search as it is limited to 10 items per mailbox)
  
