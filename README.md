@@ -3,7 +3,7 @@
 # An automated version of this script is avalible
 https://github.com/joshuaebmcguire1/Powershell-Purge-Tool/blob/main/RunAutoRemove.ps1
 
-
+# Variable Translations
  A Tool to Purge Mail from O365. This tool will ask you to specify;
  
  Sender of the email to be purged = X (This allows us to narrow down the search from a specific sender)
@@ -17,12 +17,6 @@ https://github.com/joshuaebmcguire1/Powershell-Purge-Tool/blob/main/RunAutoRemov
  Recieved Starting From = Z (Enter in M/D/YYYY Format)
  
  Recieved Ending From = W (Enter in M/D/YYYY Format)
- 
- These variables allow the script to complete the job autonomusly. It will also auto remove the search from eDiscovery within O365 once the purge is complete. 
- 
- Below is the script after its got the information it needs.
-
-
 
 # Connect using Online Exchange Powershell Module
 
@@ -31,11 +25,6 @@ Connect-IPPSSession -Credential $y
 # Begin a new compliance search
 
 New-ComplianceSearch -Name "Remove Phishing Message" -ExchangeLocation All -ContentMatchQuery "(Received:$z..$w) AND (From:$x) AND (SUBJECT:'$u')"
-
-# Variable Search Terms
-#(From:email@domain.com)
-#(From:email@domain.com) AND (Subject:"Include Subject in Quotations")
-#(Received:m/d/2020..m/d/2020) AND (Subject:'Include Subject in Quotations')
 
 # Email a Started notification
 
