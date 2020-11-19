@@ -18,9 +18,9 @@
  
  Below is the script after its got the information it needs.
 
-*********USE RUNAUTOREMOVE.PS1************* Below script will need variables manually adding.
 
-# Connect using re
+
+# Connect using Online Exchange Powershell Module
 
 Connect-IPPSSession -Credential $y
 
