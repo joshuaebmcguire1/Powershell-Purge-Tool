@@ -10,11 +10,11 @@ https://github.com/joshuaebmcguire1/Powershell-Purge-Tool/blob/main/RunAutoRemov
  
  Sender of the email to be purged = X (This allows us to narrow down the search from a specific sender)
  
- Your SMTP server address = S (This will be used to send you a notification email of commencement and completion of the purge.)
+ Your SMTP server address = S (This will be used to send you a notification email of completion of the purge.)
  
  Subject of email to be removed = U (This allows us to narrow down the search as it is limited to 10 items per mailbox)
  
- You're email address = Y (This is used to autenitcate against Exchange Powershell online and also to send you a notification email of commencement and completion of the purge.)
+ You're email address = Y (This is used to autenitcate against Exchange Powershell online and also to send you a notification email of completion of the purge.)
  
  Recieved Starting From = Z (Enter in M/D/YYYY Format)
  
@@ -28,33 +28,9 @@ Connect-IPPSSession -Credential $y
 
 New-ComplianceSearch -Name "Remove Phishing Message" -ExchangeLocation All -ContentMatchQuery "(Received:$z..$w) AND (From:$x) AND (SUBJECT:'$u')"
 
-# Email a Started notification
-
-$SmtpClient = new-object system.net.mail.smtpClient
-
-$SmtpClient.EnableSsl = $true
-
-$MailMessage = New-Object system.net.mail.mailmessage
-
-$SmtpClient.Host = "$s
-
-$mailmessage.from = new-object System.Net.Mail.MailAddress("$y, "PowerShell Alerts")
-
-$mailmessage.To.add("$y")
-
-$mailmessage.Subject = “PowerShell O365 Purge Has Begun”
-
-$mailmessage.Body = "PowerShell has been instructed by $y to purge all emails from $x between the dates $z - $w and with the subject: $u. The reason has been given as $v. This Job will be completed within 30 secs."
-
-$smtpclient.Send($mailmessage)
-
 # Start the search.
 
 Start-ComplianceSearch -Identity "Remove Phishing Message"
-
-# Wait 10 Secs
-
-Start-Sleep -s 10
 
 # View Results
 
@@ -70,10 +46,6 @@ $Stats = Get-ComplianceSearch -Identity "Remove Phishing Message" | Select -Expa
 # Hard Delete
 
 New-ComplianceSearchAction -SearchName "Remove Phishing Message" -Purge -PurgeType HardDelete -Confirm:$false
-
-# Wait 10 Secs
-
-Start-Sleep -s 10
 
 # Get Status of the Delete
 
@@ -101,10 +73,6 @@ $smtpclient.Send($mailmessage)
 
 # Remove the Case
 Remove-ComplianceSearch -Identity "Remove Phishing Message" -Confirm:$false
-
-# Wait 5 Secs
-
-Start-Sleep -s 10
 
 # Disconnects after complete
 
