@@ -1,10 +1,12 @@
 # Office 365 Mail Purge
 
+A Tool to Purge Mail from O365. The automated ps1 file will ask you these via a series of windows.forms boxes.
+
 # An automated version of this script is avalible
 https://github.com/joshuaebmcguire1/Powershell-Purge-Tool/blob/main/RunAutoRemove.ps1
 
 # Variable Translations
- A Tool to Purge Mail from O365. This tool will ask you to specify;
+ This tool will ask you to specify;
  
  Sender of the email to be purged = X (This allows us to narrow down the search from a specific sender)
  
